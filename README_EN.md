@@ -36,6 +36,107 @@ The core philosophy is "adaptive decision-making" rather than "hardcoded configu
 **Skill Command:**
 - `/agent-teams-playbook [task description]`
 
+## Example: "High-End Video Enhancer" Team Mode
+
+Use this prompt when you want the coordinator to behave like a full software + logic team building a premium AI video enhancement product (similar to enterprise-grade enhancement workflows):
+
+```text
+Act as a complete product engineering team for a high-end AI video enhancer.
+Create an Agent Teams execution plan with these roles:
+1) Product Lead (requirements, scope, acceptance criteria)
+2) Video ML Researcher (denoise, deblur, super-resolution, temporal consistency)
+3) Data Engineer (dataset strategy, synthetic + real data balance, annotation QA)
+4) Inference Engineer (tiling, batching, mixed precision, memory/perf optimization)
+5) Quality Engineer (objective metrics + human visual QA protocol)
+
+Constraints:
+- Use Stage 0 and Stage 1 mandatory flow.
+- Prefer existing Skills first; fallback chain must be explicit.
+- Output should include: architecture choices, risks, milestones, validation plan, and go/no-go gate.
+
+Goal:
+Deliver an MVP plan for "input low-quality video -> output enhanced video" with practical deployment steps.
+```
+
+Suggested acceptance criteria for this kind of task:
+
+- Clear MVP boundary (what is in/out for V1)
+- Measurable quality targets (e.g., temporal flicker reduction, perceptual score improvement)
+- Reproducible validation protocol (datasets, checkpoints, test scripts)
+- Deployment path (local GPU, cloud batch, or API inference)
+
+
+## Implementation Blueprint for ComfyUI Video Enhancer Pipelines
+
+Use this section to convert the "team-mode" plan into concrete workflow changes for production-grade enhancement pipelines.
+
+### 1) Input and frame policy (avoid accidental short clips)
+
+- In `VHS_LoadVideo`, avoid leaving `frame_load_cap` at a tiny test value in production.
+- Recommended policy:
+  - **Preview mode**: `frame_load_cap=48~120`
+  - **Production mode**: `frame_load_cap=0` (full clip) or chunked processing with explicit ranges
+- If source FPS is kept (`force_rate=0`), document target output FPS before rendering.
+
+### 2) FPS consistency and motion quality
+
+- Keep ingest and output FPS consistent unless intentionally doing motion stylization.
+- If reducing FPS, pair it with `select_every_nth` so temporal sampling is explicit and reproducible.
+- Always verify audio sync when output FPS differs from source FPS.
+
+### 3) Temporal color stability (anti-flicker)
+
+- Color transfer from a single reference image can produce frame-to-frame color variation.
+- Add a temporal stabilization strategy:
+  1. Prefer video-aware grading/matching nodes when available.
+  2. Otherwise compute a global grade transform from representative frames and apply consistently.
+  3. Start with conservative color-match strength and increase only after flicker checks.
+
+### 4) Determinism and reproducibility
+
+- Keep one **locked baseline profile** for QA runs:
+  - fixed seed
+  - fixed model versions
+  - fixed key parameters (resolution, steps, sampler/perf mode)
+- Keep one **exploration profile** for creative tuning:
+  - randomized seed or broader parameter sweeps
+- Store metadata and include profile identifiers in output filenames.
+
+### 5) Dual-profile operation (fast iteration + final quality)
+
+| Profile | Purpose | Typical Settings |
+|--------|---------|------------------|
+| Preview | Fast feedback, parameter tuning | lower resolution, shorter frame cap/chunk, lower compute |
+| Final | Delivery render | target resolution, full clip/chunks, high-quality settings |
+
+A practical team workflow is: Preview → lock parameters → Final → QA gate.
+
+### 6) Suggested QA gate before export
+
+Check all items before final `VHS_VideoCombine` delivery:
+
+- No major temporal flicker in high-motion segments
+- No obvious oversharpen halos or denoise smearing
+- FPS/output cadence matches delivery target
+- Audio alignment preserved after frame-rate decisions
+- Metadata saved for reproducibility (model + seed + key params)
+
+### 7) Agent Teams execution template for this implementation
+
+Use this compact role split when asking `/agent-teams-playbook` to implement the pipeline:
+
+1. **Product Lead**: define V1 scope and acceptance thresholds.
+2. **Video ML Engineer**: tune denoise/deblur/upscale and temporal consistency strategy.
+3. **Inference Engineer**: optimize VRAM use, chunking, and throughput.
+4. **Color/Look Engineer**: design stable color transfer and anti-flicker checks.
+5. **QA Engineer**: enforce objective + visual checks and go/no-go criteria.
+
+Expected deliverables:
+- parameter tables for Preview and Final profiles
+- reproducible run checklist
+- risk list + rollback plan
+
+
 ## Installation
 
 ### Option 1: CLI Installation (Recommended)
